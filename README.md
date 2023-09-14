@@ -1,7 +1,7 @@
 # Fast Food Management System
 A fast food application for individuals to see and order from a variety of Food.
 
-				(Functional Requirements)
+	(Functional Requirements)
  Administrator:
 1- manages user accounts login.
 2- keeps updating inventory levels and order supplies.
@@ -19,7 +19,7 @@ Customer:
 Rider:
 1- delivers food to the customers.
 
-        (Non-Functional Requirements)
+	(Non-Functional Requirements)
 1- Performance.
 2- Reliability.
 3- scallibility.
