@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodmanagementsystem/utils/colors.dart';
 import 'package:foodmanagementsystem/utils/dimensions.dart';
+import 'package:foodmanagementsystem/widgets/app_column.dart';
 import 'package:foodmanagementsystem/widgets/big_text.dart';
 import 'package:foodmanagementsystem/widgets/icon_and_text_widget.dart';
 import 'package:foodmanagementsystem/widgets/small_text.dart';
@@ -96,9 +97,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
           ),
         ),
         //list of food and Images
-        Container(
-          height: 700,
-          child:ListView.builder(
+        ListView.builder(
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: 10,
@@ -133,37 +132,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
                         ),
                         child: Padding(
                           padding: EdgeInsets.only(left: Dimensions.width10, right: Dimensions.width10),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            BigText(text: "Fast food in Pakistan"),
-                            SizedBox(height: Dimensions.height10,),
-                            SmallText(text: "With Pakistani characteristics"),
-                            SizedBox(height: Dimensions.height10,),
-                            Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  IconAndTextWidget(
-                                    icon: Icons.circle_sharp,
-                                    text: "Normal",
-                                    iconColor: AppColors.iconColor1,
-                                  ),
-                                  IconAndTextWidget(
-                                    icon: Icons.location_on,
-                                    text: "1.7km",
-                                    iconColor: AppColors.mainColor,
-                                  ),
-                                  IconAndTextWidget(
-                                    icon: Icons.access_time_rounded,
-                                    text: "32min",
-                                    iconColor: AppColors.iconColor2,
-                                  ),
-                                ],
-                              )
-                          ],
-                        ),
+                        child: AppColumn(text: "Fast Food in Pakistan"),
                         ),
                       ),
                     ),
@@ -172,7 +141,7 @@ class _FoodPageBodyState extends State<FoodPageBody> {
               );
             },
           ),
-        ),
+
       ],
     );
   }
