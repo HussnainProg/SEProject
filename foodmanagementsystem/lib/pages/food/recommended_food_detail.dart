@@ -29,7 +29,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 child: Container(
                   child: Center(
                       child: BigText(
-                          size: Dimensions.font16, text: ("Sea Food Side"))),
+                          size: Dimensions.font26, text: ("Fast Food Side"))),
                   width: double.maxFinite,
                   padding: EdgeInsets.only(top: 5, bottom: 10),
                   decoration: BoxDecoration(
@@ -45,7 +45,7 @@ class RecommendedFoodDetail extends StatelessWidget {
               expandedHeight: 300,
               flexibleSpace: FlexibleSpaceBar(
                 background: Image.asset(
-                  "assets/image/food0.png",
+                  "assets/image/food1.png",
                   width: double.maxFinite,
                   fit: BoxFit.cover,
                 ),
@@ -120,20 +120,9 @@ class RecommendedFoodDetail extends StatelessWidget {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(Dimensions.radius20),
                       color: Colors.white),
-                  child: Row(
-                    children: [
-                      Icon(
-                        Icons.remove,
-                        color: AppColors.signColor,
-                      ),
-                      SizedBox(width: Dimensions.width10 / 2),
-                      BigText(text: "0"),
-                      SizedBox(width: Dimensions.width10 / 2),
-                      Icon(
-                        Icons.add,
-                        color: AppColors.signColor,
-                      ),
-                    ],
+                  child: Icon(
+                    Icons.favorite,
+                    color: AppColors.mainColor,
                   ),
                 ),
                 Container(
