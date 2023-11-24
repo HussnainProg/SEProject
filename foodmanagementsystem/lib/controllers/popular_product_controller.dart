@@ -1,5 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:foodmanagementsystem/data/repository/popular_product_repo.dart';
 import 'package:foodmanagementsystem/models/products_model.dart';
+import 'package:foodmanagementsystem/utils/colors.dart';
 import 'package:get/get.dart';
 
 class PopularProductController extends GetxController {
@@ -10,6 +12,9 @@ class PopularProductController extends GetxController {
 
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
+
+  int _quantity = 0;
+  int get quantity => _quantity;
 
   // get product list from the server
   Future<void> getPopularProductList() async {
@@ -23,5 +28,36 @@ class PopularProductController extends GetxController {
       _isLoaded = true;
       update(); // this tell UI that data has been updated
     } else {}
+  }
+
+  // increasing and decreasing items in cart
+  // true: item is to increased based on click
+  // false: item is to be decreased based on click
+  void setQuantity(bool isIncrement) {
+    if (isIncrement) {
+      print("increment" + _quantity.toString());
+      _quantity = checkQuantity(_quantity + 1);
+    } else {
+      print("decrement" + _quantity.toString());
+      _quantity = checkQuantity(_quantity - 1);
+    }
+    //tells UI about update
+    update();
+  }
+
+  // local scope; local scope gets priority on global scope
+  int checkQuantity(int quantity) {
+    if (quantity < 0) {
+      Get.snackbar("Item count", "You can't reduce more !",
+      backgroundColor: AppColors.mainColor,
+      colorText: Colors.white);
+      return 0;
+    } else if (quantity > 20) {
+      Get.snackbar("Item count", "You can't add more !",
+          backgroundColor: AppColors.mainColor, colorText: Colors.white);
+      return 20;
+    } else {
+      return quantity;
+    }
   }
 }
