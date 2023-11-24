@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:foodmanagementsystem/controllers/popular_product_controller.dart';
+import 'package:foodmanagementsystem/controllers/recommended_product_controller.dart';
 import 'package:foodmanagementsystem/pages/food/popular_food_detail.dart';
 import 'package:foodmanagementsystem/pages/food/recommended_food_detail.dart';
+import 'package:foodmanagementsystem/pages/home/food_page_body.dart';
 import 'package:foodmanagementsystem/pages/home/main_food_page.dart';
 import 'package:get/get.dart';
 import 'helper/dependencies.dart' as dep;
+import 'package:foodmanagementsystem/routes/route_helper.dart';
 
 Future<void> main() async {
   //make sure that dependencies are initialized
@@ -17,9 +21,13 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const GetMaterialApp(
+    Get.find<PopularProductController>().getPopularProductList();
+    Get.find<RecommendedProductController>().getRecommendedProductList();
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: RecommendedFoodDetail(),
+      home: MainFoodPage(),
+      initialRoute: RouteHelper.initial,
+      getPages: RouteHelper.routes,
     );
   }
 }
