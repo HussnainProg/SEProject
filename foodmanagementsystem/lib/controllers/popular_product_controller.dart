@@ -60,4 +60,7 @@ class PopularProductController extends GetxController {
       return quantity;
     }
   }
+  void initProduct(){
+    _quantity = 0;
+  }
 }
