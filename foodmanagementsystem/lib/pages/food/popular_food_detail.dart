@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodmanagementsystem/controllers/popular_product_controller.dart';
 import 'package:foodmanagementsystem/pages/home/main_food_page.dart';
+import 'package:foodmanagementsystem/utils/app_constants.dart';
 import 'package:foodmanagementsystem/utils/colors.dart';
 import 'package:foodmanagementsystem/utils/dimensions.dart';
 import 'package:foodmanagementsystem/widgets/app_column.dart';
@@ -20,8 +21,8 @@ class PopularFoodDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     var product =
         Get.find<PopularProductController>().popularProductList[pageId];
-    print("page is Id " + pageId.toString());
-    print("product name is " + product.name.toString());
+      print("page is Id " + pageId.toString());
+      print("product name is " + product.name.toString());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -35,7 +36,9 @@ class PopularFoodDetail extends StatelessWidget {
               height: Dimensions.popularFoodImgSize,
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage("assets/image/food1.png"),
+                  image: NetworkImage(AppConstants.BASE_URL +
+                      AppConstants.UPLOAD_URL +
+                      product.img!),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -78,7 +81,7 @@ class PopularFoodDetail extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  AppColumn(text: "Fast Food in Pakistan"),
+                  AppColumn(text: product.name!),
                   SizedBox(
                     height: Dimensions.height20,
                   ),
@@ -90,9 +93,8 @@ class PopularFoodDetail extends StatelessWidget {
                   Expanded(
                     child: SingleChildScrollView(
                       child: ExpandableTextWidget(
-                          text:
-                              "To prepare a delicious homemade burger, start by selecting high-quality ingredients. Begin with 1 pound of ground beef (preferably 80% lean, 20% fat) for that juicy flavor. In a mixing bowl, season the beef with salt, pepper, and any desired spices like garlic powder or onion powder. Gently combine the ingredients, being careful not to overmix, as it can result in a tougher texture.Divide the seasoned beef into equal portions and shape them into burger patties. Heat a grill or stovetop pan over medium-high heat and cook the patties to your preferred doneness, usually 3-4 minutes per side for medium. Just before they're done, add a slice of your favorite cheese to each patty and let it melt. While the patties are cooking, prepare the burger fixings. Toast the burger buns on the grill or in a toaster for a crispy texture. Spread a generous amount of mayonnaise, ketchup, or mustard on the bottom half of each bun. Layer fresh lettuce, tomato slices, and red onion rings on top. Once the patties are cooked and the cheese is melted, carefully transfer them onto the prepared buns. Add any additional toppings you desire, such as pickles, bacon, or avocado slices. Finally, place the top half of the bun on top, press gently to hold everything together, and your mouthwatering homemade burger is ready to be savored. Serve with your favorite side dishes and enjoy this delightful culinary creation!"),
-                    ),
+                          text: product.description!),
+                    )
                   )
                 ],
               ),
