@@ -14,8 +14,8 @@ import 'package:foodmanagementsystem/widgets/small_text.dart';
 import 'package:get/get.dart';
 
 class PopularFoodDetail extends StatelessWidget {
-  int pageId;
-  PopularFoodDetail({Key? key, required this.pageId}) : super(key: key);
+  final int pageId;
+  const PopularFoodDetail({Key? key, required this.pageId}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -150,7 +150,7 @@ class PopularFoodDetail extends StatelessWidget {
                   left: Dimensions.width20,
                   right: Dimensions.width20),
               child: BigText(
-                text: " \$10 | Add to cart",
+                text: " \$ ${product.price!} | Add to cart",
                 color: Colors.white,
               ),
               decoration: BoxDecoration(

@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:foodmanagementsystem/controllers/recommended_product_controller.dart';
+import 'package:foodmanagementsystem/utils/app_constants.dart';
 import 'package:foodmanagementsystem/utils/colors.dart';
 import 'package:foodmanagementsystem/utils/dimensions.dart';
 import 'package:foodmanagementsystem/widgets/app_icon.dart';
@@ -9,10 +11,14 @@ import 'package:get/get.dart';
 import 'package:foodmanagementsystem/routes/route_helper.dart';
 
 class RecommendedFoodDetail extends StatelessWidget {
-  const RecommendedFoodDetail({super.key});
+  final int pageId;
+  const RecommendedFoodDetail({Key? key, required this.pageId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var product =
+        Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
@@ -37,7 +43,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                 child: Container(
                   child: Center(
                       child: BigText(
-                          size: Dimensions.font26, text: ("Fast Food Side"))),
+                          size: Dimensions.font26, text: product.name!)),
                   width: double.maxFinite,
                   padding: EdgeInsets.only(top: 5, bottom: 10),
                   decoration: BoxDecoration(
@@ -52,8 +58,10 @@ class RecommendedFoodDetail extends StatelessWidget {
               backgroundColor: AppColors.yellowColor,
               expandedHeight: 300,
               flexibleSpace: FlexibleSpaceBar(
-                background: Image.asset(
-                  "assets/image/food1.png",
+                background: Image.network(
+                  AppConstants.BASE_URL +
+                      AppConstants.UPLOAD_URL +
+                      product.img!,
                   width: double.maxFinite,
                   fit: BoxFit.cover,
                 ),
@@ -62,9 +70,7 @@ class RecommendedFoodDetail extends StatelessWidget {
               child: Column(
             children: [
               Container(
-                child: ExpandableTextWidget(
-                    text:
-                        "To prepare a delicious homemade burger, start by selecting high-quality ingredients. Begin with 1 pound of ground beef (preferably 80% lean, 20% fat) for that juicy flavor. In a mixing bowl, season the beef with salt, pepper, and any desired spices like garlic powder or onion powder. Gently combine the ingredients, being careful not to overmix, as it can result in a tougher texture.Divide the seasoned beef into equal portions and shape them into burger patties. Heat a grill or stovetop pan over medium-high heat and cook the patties to your preferred doneness, usually 3-4 minutes per side for medium. Just before they're done, add a slice of your favorite cheese to each patty and let it melt. While the patties are cooking, prepare the burger fixings. Toast the burger buns on the grill or in a toaster for a crispy texture. Spread a generous amount of mayonnaise, ketchup, or mustard on the bottom half of each bun. Layer fresh lettuce, tomato slices, and red onion rings on top. Once the patties are cooked and the cheese is melted, carefully transfer them onto the prepared buns. Add any additional toppings you desire, such as pickles, bacon, or avocado slices. Finally, place the top half of the bun on top, press gently to hold everything together, and your mouthwatering homemade burger is ready to be savored. Serve with your favorite side dishes and enjoy this delightful culinary creation!"),
+                child: ExpandableTextWidget(text: product.description!,),
                 margin: EdgeInsets.only(
                     left: Dimensions.width20, right: Dimensions.width20),
               )
@@ -91,7 +97,7 @@ class RecommendedFoodDetail extends StatelessWidget {
                     backgroundColor: AppColors.mainColor,
                     icon: Icons.remove),
                 BigText(
-                  text: "\$12.88 " + " X " + " 0 ",
+                  text: "\$ ${product.price!} X  0 ",
                   color: AppColors.mainBlackColor,
                   size: Dimensions.font26,
                 ),
