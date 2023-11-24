@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:foodmanagementsystem/controllers/cart_controller.dart';
 import 'package:foodmanagementsystem/data/repository/popular_product_repo.dart';
 import 'package:foodmanagementsystem/models/products_model.dart';
 import 'package:foodmanagementsystem/utils/colors.dart';
@@ -9,12 +10,15 @@ class PopularProductController extends GetxController {
   PopularProductController({required this.popularProductRepo});
   List<dynamic> _popularProductList = []; // private variable
   List<dynamic> get popularProductList => _popularProductList;
+  late CartController _cart;
 
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
 
   int _quantity = 0;
   int get quantity => _quantity;
+  int _inCartItems = 0;
+  int get inCartItems => _inCartItems + _quantity;
 
   // get product list from the server
   Future<void> getPopularProductList() async {
@@ -49,8 +53,7 @@ class PopularProductController extends GetxController {
   int checkQuantity(int quantity) {
     if (quantity < 0) {
       Get.snackbar("Item count", "You can't reduce more !",
-      backgroundColor: AppColors.mainColor,
-      colorText: Colors.white);
+          backgroundColor: AppColors.mainColor, colorText: Colors.white);
       return 0;
     } else if (quantity > 20) {
       Get.snackbar("Item count", "You can't add more !",
@@ -60,7 +63,16 @@ class PopularProductController extends GetxController {
       return quantity;
     }
   }
-  void initProduct(){
+
+  void initProduct(CartController cart) {
     _quantity = 0;
+    _inCartItems = 0;
+    _cart = cart;
+    //if exists
+    //get from storage _inCartItem=3
+  }
+
+  void addItem(ProductModel product) {
+    _cart.addItem(product, _quantity);
   }
 }
