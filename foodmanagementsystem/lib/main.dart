@@ -26,8 +26,8 @@ class MainApp extends StatelessWidget {
     Get.find<RecommendedProductController>().getRecommendedProductList();
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      home: const MainFoodPage(),
-      initialRoute: RouteHelper.initial,
+      //home: const MainFoodPage(),
+      initialRoute: RouteHelper.getInitial(),
       getPages: RouteHelper.routes,
     );
   }
