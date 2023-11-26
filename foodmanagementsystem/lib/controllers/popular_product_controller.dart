@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:foodmanagementsystem/controllers/cart_controller.dart';
 import 'package:foodmanagementsystem/data/repository/popular_product_repo.dart';
+import 'package:foodmanagementsystem/models/cart_model.dart';
 import 'package:foodmanagementsystem/models/products_model.dart';
 import 'package:foodmanagementsystem/utils/colors.dart';
 import 'package:get/get.dart';
@@ -41,6 +42,7 @@ class PopularProductController extends GetxController {
     if (isIncrement) {
       //print("increment" + _quantity.toString());
       _quantity = checkQuantity(_quantity + 1);
+      print("Number of items " + _quantity.toString());
     } else {
       print("decrement" + _quantity.toString());
       _quantity = checkQuantity(_quantity - 1);
@@ -54,6 +56,10 @@ class PopularProductController extends GetxController {
     if ((_inCartItems + quantity) < 0) {
       Get.snackbar("Item count", "You can't reduce more !",
           backgroundColor: AppColors.mainColor, colorText: Colors.white);
+      if (_inCartItems > 0) {
+        _quantity = -_inCartItems;
+        return _quantity;
+      }
       return 0;
     } else if ((_inCartItems + quantity) > 20) {
       Get.snackbar("Item count", "You can't add more !",
@@ -80,19 +86,23 @@ class PopularProductController extends GetxController {
   }
 
   void addItem(ProductModel product) {
-    /*if (_quantity > 0) {*/
-      _cart.addItem(product, _quantity);
-      _quantity = 0;
-      _inCartItems = _cart.getQuantity(product);
-      _cart.items.forEach((key, value) {
-        print("The id is " +
-            value.id.toString() +
-            "The quantity is " +
-            value.quantity.toString());
-      });
-    /*} else {
-      Get.snackbar("Item count", "You should at least add an item in the cart!",
-          backgroundColor: AppColors.mainColor, colorText: Colors.white);
-    }*/
+    _cart.addItem(product, _quantity);
+    _quantity = 0;
+    _inCartItems = _cart.getQuantity(product);
+    _cart.items.forEach((key, value) {
+      print("The id is " +
+          value.id.toString() +
+          "The quantity is " +
+          value.quantity.toString());
+    });
+    update();
+  }
+
+  int get totalItems {
+    return _cart.totalItems;
+  }
+
+  List<CartModel> get getItems {
+    return _cart.getItems;
   }
 }
