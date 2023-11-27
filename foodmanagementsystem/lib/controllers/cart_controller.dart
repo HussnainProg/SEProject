@@ -60,6 +60,7 @@ class CartController extends GetxController {
             backgroundColor: AppColors.mainColor, colorText: Colors.white);
       }
     }
+    cartRepo.addToCartList(getItems);
     update();
   }
 
@@ -89,7 +90,7 @@ class CartController extends GetxController {
     });
     return totalQuantity;
   }
-
+ //list of all items
   List<CartModel> get getItems {
     return _items.entries.map((e) {
       return e.value;

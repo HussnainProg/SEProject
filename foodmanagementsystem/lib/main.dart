@@ -6,6 +6,7 @@ import 'package:foodmanagementsystem/pages/food/popular_food_detail.dart';
 import 'package:foodmanagementsystem/pages/food/recommended_food_detail.dart';
 import 'package:foodmanagementsystem/pages/home/food_page_body.dart';
 import 'package:foodmanagementsystem/pages/home/main_food_page.dart';
+import 'package:foodmanagementsystem/pages/splash/splash_page.dart';
 import 'package:get/get.dart';
 import 'helper/dependencies.dart' as dep;
 import 'package:foodmanagementsystem/routes/route_helper.dart';
@@ -22,13 +23,15 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.find<PopularProductController>().getPopularProductList();
-    Get.find<RecommendedProductController>().getRecommendedProductList();
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      //home: const MainFoodPage(),
-      initialRoute: RouteHelper.getInitial(),
-      getPages: RouteHelper.routes,
-    );
+    return GetBuilder<PopularProductController>(builder: (_) {
+      return GetBuilder<RecommendedProductController>(builder: (_) {
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          //home: const SplashScreen(),
+          initialRoute: RouteHelper.getSplashpage(),
+          getPages: RouteHelper.routes,
+        );
+      });
+    });
   }
 }
