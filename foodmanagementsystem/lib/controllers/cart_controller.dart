@@ -12,6 +12,9 @@ class CartController extends GetxController {
 
   Map<int, CartModel> get items => _items;
 
+  //only for storage and shared preferences
+  List<CartModel> storageItems = [];
+
   void addItem(ProductModel product, int quantity) {
     var totalQuantity = 0;
     //print("length of item is "+_items.length.toString());
@@ -90,7 +93,8 @@ class CartController extends GetxController {
     });
     return totalQuantity;
   }
- //list of all items
+
+  //list of all items
   List<CartModel> get getItems {
     return _items.entries.map((e) {
       return e.value;
@@ -104,5 +108,18 @@ class CartController extends GetxController {
       total += value.quantity! * value.price!;
     });
     return total;
+  }
+  // its only get called when user starts the app or kill the app
+  List<CartModel> getCartData() {
+    setCart = cartRepo.getCartList();
+    return storageItems;
+  }
+
+  set setCart(List<CartModel> items) {
+    storageItems = items;
+
+    for (int i = 0; i < storageItems.length; i++) {
+      _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
+    }
   }
 }
