@@ -7,11 +7,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 class CartRepo {
   final SharedPreferences sharedPreferences;
   CartRepo({required this.sharedPreferences});
-
+  // cart page which is inside the food pages
   List<String> cart = [];
+  List<String> cartHistory = []; //cart page which is on Navigation
 
   //object into json
   void addToCartList(List<CartModel> cartList) {
+    
     cart = [];
     // converting object into string as shared preferences only accept string
     cartList.forEach((element) => cart.add(jsonEncode(element)));
@@ -30,8 +32,23 @@ class CartRepo {
     }
     List<CartModel> cartList = [];
 
-    carts.forEach((element) => cartList.add(CartModel.fromJson(jsonDecode(element))));
+    carts.forEach(
+        (element) => cartList.add(CartModel.fromJson(jsonDecode(element))));
 
     return cartList;
+  }
+
+  void addToCartHistoryList() {
+    for (int i = 0; i < cart.length; i++) {
+      //print("history list " + cart[i]);
+      cartHistory.add(cart[i]);
+    }
+    removeCart();
+    sharedPreferences.setStringList(
+        AppConstants.CART_HISTORY_LIST, cartHistory);
+  }
+
+  void removeCart(){
+    sharedPreferences.remove(AppConstants.CART_LIST);
   }
 }

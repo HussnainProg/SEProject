@@ -109,6 +109,7 @@ class CartController extends GetxController {
     });
     return total;
   }
+
   // its only get called when user starts the app or kill the app
   List<CartModel> getCartData() {
     setCart = cartRepo.getCartList();
@@ -121,5 +122,15 @@ class CartController extends GetxController {
     for (int i = 0; i < storageItems.length; i++) {
       _items.putIfAbsent(storageItems[i].product!.id!, () => storageItems[i]);
     }
+  }
+
+  void addToHistory() {
+    cartRepo.addToCartHistoryList();
+    clear();
+  }
+
+  void clear() {
+    _items = {};
+    update();
   }
 }
