@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:foodmanagementsystem/controllers/cart_controller.dart';
 import 'package:foodmanagementsystem/controllers/popular_product_controller.dart';
 import 'package:foodmanagementsystem/controllers/recommended_product_controller.dart';
+import 'package:foodmanagementsystem/pages/auth/sign_in_page.dart';
 import 'package:foodmanagementsystem/pages/auth/sign_up_page.dart';
 import 'package:foodmanagementsystem/pages/cart/cart_page.dart';
 import 'package:foodmanagementsystem/pages/food/popular_food_detail.dart';
@@ -30,8 +31,8 @@ class MainApp extends StatelessWidget {
       return GetBuilder<RecommendedProductController>(builder: (_) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
-          home: SignUpPage(),
-          //home: const SplashScreen(),
+          //home: SignInPage(),
+          home: const SplashScreen(),
           //initialRoute: RouteHelper.getSplashpage(),
           //getPages: RouteHelper.routes,
         );

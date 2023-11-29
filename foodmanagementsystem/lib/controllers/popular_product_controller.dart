@@ -25,11 +25,11 @@ class PopularProductController extends GetxController {
   Future<void> getPopularProductList() async {
     Response response = await popularProductRepo.getPopularProductList();
     if (response.statusCode == 200) {
-      print("got products");
+      //print("got products");
       _popularProductList = [];
       _popularProductList.addAll(
           Product.fromJson(response.body).products); // it will return objects
-      print(_popularProductList);
+      //print(_popularProductList);
       _isLoaded = true;
       update(); // this tell UI that data has been updated
     } else {}
@@ -42,9 +42,9 @@ class PopularProductController extends GetxController {
     if (isIncrement) {
       //print("increment" + _quantity.toString());
       _quantity = checkQuantity(_quantity + 1);
-      print("Number of items " + _quantity.toString());
+      //print("Number of items " + _quantity.toString());
     } else {
-      print("decrement" + _quantity.toString());
+      //print("decrement" + _quantity.toString());
       _quantity = checkQuantity(_quantity - 1);
     }
     //tells UI about update

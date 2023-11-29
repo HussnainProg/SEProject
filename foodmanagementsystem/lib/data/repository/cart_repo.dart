@@ -24,7 +24,7 @@ class CartRepo {
     });
     // we have key and value pairs
     sharedPreferences.setStringList(AppConstants.CART_LIST, cart);
-    print(sharedPreferences.getStringList(AppConstants.CART_LIST));
+    //print(sharedPreferences.getStringList(AppConstants.CART_LIST));
     //getCartList();
   }
 
@@ -68,9 +68,9 @@ class CartRepo {
     removeCart();
     sharedPreferences.setStringList(
         AppConstants.CART_HISTORY_LIST, cartHistory);
-    print("length of history list is " + getCartHistoryList().length.toString());
+      //print("length of history list is " + getCartHistoryList().length.toString());
     for(int j =0; j<getCartHistoryList().length; j++) {
-      print("The time for the order is " +getCartHistoryList()[j].time.toString());
+      //print("The time for the order is " +getCartHistoryList()[j].time.toString());
     }
   }
 
