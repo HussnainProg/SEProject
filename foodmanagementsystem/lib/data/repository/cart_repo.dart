@@ -13,8 +13,8 @@ class CartRepo {
 
   //object into json
   void addToCartList(List<CartModel> cartList) {
-    //sharedPreferences.remove(AppConstants.CART_LIST);
-    //sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);
+    /*sharedPreferences.remove(AppConstants.CART_LIST);
+    sharedPreferences.remove(AppConstants.CART_HISTORY_LIST);*/
     var time = DateTime.now().toString();
     cart = [];
     // converting object into string as shared preferences only accept string and reset the time for all products
