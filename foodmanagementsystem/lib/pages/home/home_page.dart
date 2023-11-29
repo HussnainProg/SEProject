@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:foodmanagementsystem/pages/account/account_page.dart';
+import 'package:foodmanagementsystem/pages/auth/sign_up_page.dart';
 import 'package:foodmanagementsystem/pages/cart/cart_history.dart';
 import 'package:foodmanagementsystem/pages/home/main_food_page.dart';
 import 'package:foodmanagementsystem/utils/colors.dart';
@@ -16,9 +17,7 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   List pages = [
     MainFoodPage(),
-    Container(
-      child: Center(child: Text("Next page")),
-    ),
+    SignUpPage(),
     CartHistory(),
     AccountPage(),
   ];
