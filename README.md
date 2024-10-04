@@ -41,11 +41,11 @@ A mobile application built with Flutter and Dart for managing fast food orders, 
 ### Steps to Run
 1. Clone the repository:
    ```bash
-   git clone https://github.com/HussnainProg/SEProject.git
+   - `git clone https://github.com/HussnainProg/SEProject.git`
 2. Navigate to the project directory:
-   cd SEProject
+   `cd SEProject`
 3. Install Flutter dependencies:
-   flutter pub get
-4. Set up your MongoDB connection in lib/config/mongodb_config.dart.
+   `flutter pub get`
+4. Set up your MongoDB connection in `lib/config/mongodb_config.dart`
 5. Run the app:
-   flutter run
+   `flutter run`
